@@ -31,14 +31,38 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employees;
 	}
 
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public void registerEmployee(Employee employee) throws EmployeeServiceException {
 		LOGGER.debug("registerEmployee()-start");
-		this.employeeServiceDao.registerEmployeePersonalInfo(employee);
-		
+		if (!this.employeeServiceDao.isEmployeeExists(employee)) {
+			this.employeeServiceDao.registerEmployeePersonalInfo(employee);
+		} else {
+			throw new EmployeeServiceException("0:employee already exists.");
+		}
 		LOGGER.debug("registerEmployee()-end");
 	}
 
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void deleteEmployee(Long employeeId) throws EmployeeServiceException {
+		LOGGER.debug("deleteEmployee()-start");
+		this.employeeServiceDao.deleteEmployeeInfo(employeeId);
+		LOGGER.debug("deleteEmployee()-end");
+	}
 
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void updateEmployee(Employee employee, String flagUpdate) throws EmployeeServiceException {
+		LOGGER.debug("updateEmployee()-start");
+		if (this.employeeServiceDao.isEmployeeExists(employee) || "personal".equals(flagUpdate)) {
+			switch (flagUpdate) {
+				case "personal" : this.employeeServiceDao.updateEmployeePersonalInfo(employee); break;
+				case "address" :  this.employeeServiceDao.updateEmployeeAddressInfo(employee); break;
+				case "contact" :  this.employeeServiceDao.updateEmployeeContactInfo(employee); break;
+				default: throw new EmployeeServiceException("0:flagUpdate not found.");
+			}
+		}
+		LOGGER.debug("updateEmployee()-end");
+	}
 }

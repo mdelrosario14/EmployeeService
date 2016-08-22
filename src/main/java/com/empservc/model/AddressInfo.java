@@ -12,7 +12,7 @@ public class AddressInfo {
 	private String cityName;
 	private String stateName;
 	private int zip;
-	private String country;
+
 	public String getIdentifier() {
 		return identifier;
 	}
@@ -49,15 +49,10 @@ public class AddressInfo {
 	public void setZip(int zip) {
 		this.zip = zip;
 	}
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
+
 	@Override
 	public String toString() {
 		return "AddressInfo [identifier=" + identifier + ", streetName=" + streetName + ", villageName=" + villageName
-				+ ", cityName=" + cityName + ", stateName=" + stateName + ", zip=" + zip + ", country=" + country + "]";
+				+ ", cityName=" + cityName + ", stateName=" + stateName + ", zip=" + zip + "]";
 	}
 }

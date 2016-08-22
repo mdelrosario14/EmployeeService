@@ -8,15 +8,8 @@ import java.util.List;
  *
  */
 public class ContactInfo {
-	private String emailAddress;
 	private List<Long> phoneNumbers;
-	
-	public String getEmailAddress() {
-		return emailAddress;
-	}
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
-	}
+
 	public List<Long> getPhoneNumbers() {
 		return phoneNumbers;
 	}
@@ -25,7 +18,7 @@ public class ContactInfo {
 	}
 	@Override
 	public String toString() {
-		return "ContactInfo [emailAddress=" + emailAddress + ", phoneNumbers=" + phoneNumbers + "]";
+		return "ContactInfo [phoneNumbers=" + phoneNumbers + "]";
 	}
 	
 	

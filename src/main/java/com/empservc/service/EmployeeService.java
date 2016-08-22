@@ -8,4 +8,6 @@ import com.empservc.model.Employee;
 public interface EmployeeService {
 	List<Employee> getAllEmployees();
 	void registerEmployee(Employee employee) throws EmployeeServiceException;
+	void deleteEmployee(Long employeeId) throws EmployeeServiceException;
+	void updateEmployee(Employee employee, String flagUpdate) throws EmployeeServiceException;
 }
