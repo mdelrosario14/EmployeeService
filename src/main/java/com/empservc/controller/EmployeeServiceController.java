@@ -14,8 +14,6 @@ import com.empservc.exception.EmployeeServiceException;
 import com.empservc.model.Employee;
 import com.empservc.service.EmployeeService;
 
-
-
 /**
  * This class serves as the controller of the employee service module.
  * @author Mardolfh del Rosario
@@ -27,7 +25,13 @@ public class EmployeeServiceController {
 	@Autowired
 	EmployeeService employeeService;
 	private static final Logger LOGGER = Logger.getLogger(EmployeeServiceController.class);
-	
+
+	/**
+	 * Registers a new employee.
+	 * 
+	 * @param employee Employee mapped from a json reference
+	 * @return ResponseEntity object reference
+	 */
 	@RequestMapping(value="/register.do", method = RequestMethod.POST)
 	public ResponseEntity<String> registerNewEmployee(@RequestBody Employee employee) {
 		LOGGER.debug("registerNewEmployee()-start: " + employee);
@@ -57,6 +61,13 @@ public class EmployeeServiceController {
 		return returnEntity;
 	}
 	
+	/**
+	 * Updates an employee information.
+	 * 
+	 * @param employee  Employee mapped from a json reference
+	 * @param flagUpdate flag if personal, address or contact
+	 * @return ResponseEntity object reference
+	 */
 	@RequestMapping(value="/update.do", method = RequestMethod.PUT)
 	public ResponseEntity<String> updateEmployeeInfo(@RequestBody Employee employee,
 			@RequestParam("flag") String flagUpdate) {
@@ -82,6 +93,12 @@ public class EmployeeServiceController {
 		return returnEntity;
 	}
 	
+	/**
+	 * Deletes the employee information.
+	 * 
+	 * @param employeeId employee id
+	 * @return ResponseEntity object reference
+	 */
 	@RequestMapping(value="/delete.do", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteEmployee(@RequestParam(value="employeeId") long employeeId) {
 		LOGGER.debug("deleteEmployee()-start: " + employeeId);
@@ -97,9 +114,9 @@ public class EmployeeServiceController {
 				returnEntity = new ResponseEntity<String>(responseCode, HttpStatus.NO_CONTENT);
 			}
 			
-		} catch(EmployeeServiceException e) {
+		} catch (EmployeeServiceException e) {
 			LOGGER.error("Failed to delete employee...");
-			responseCode = "0:" + "Failed to delete employee..";
+			responseCode = "Failed to delete employee..";
 			returnEntity = new ResponseEntity<String>(responseCode, HttpStatus.NOT_ACCEPTABLE);
 		}
 		
