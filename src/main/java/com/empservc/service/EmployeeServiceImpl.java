@@ -38,7 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if (!this.employeeServiceDao.isEmployeeExists(employee)) {
 			this.employeeServiceDao.registerEmployeePersonalInfo(employee);
 		} else {
-			throw new EmployeeServiceException("0:employee already exists.");
+			throw new EmployeeServiceException("employee already exists.");
 		}
 		LOGGER.debug("registerEmployee()-end");
 	}
@@ -60,7 +60,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 				case "personal" : this.employeeServiceDao.updateEmployeePersonalInfo(employee); break;
 				case "address" :  this.employeeServiceDao.updateEmployeeAddressInfo(employee); break;
 				case "contact" :  this.employeeServiceDao.updateEmployeeContactInfo(employee); break;
-				default: throw new EmployeeServiceException("0:flagUpdate not found.");
+				default: throw new EmployeeServiceException("flagUpdate not found.");
 			}
 		}
 		LOGGER.debug("updateEmployee()-end");

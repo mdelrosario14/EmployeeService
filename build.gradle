@@ -24,11 +24,12 @@ repositories {
 
 dependencies {
 	compile 'log4j:log4j:1.2.17'
-	compile 'org.springframework:spring-core:3.0.5.RELEASE'
-	compile 'org.springframework:spring-web:3.0.5.RELEASE'
-	compile 'org.springframework:spring-webmvc:3.0.5.RELEASE'
+	compile 'org.springframework:spring-core:4.3.0.RELEASE'
+	compile 'org.springframework:spring-web:4.3.0.RELEASE'
+	compile 'org.springframework:spring-webmvc:4.3.0.RELEASE'
 	compile 'org.springframework:spring-jdbc:3.0.3.RELEASE'
-	compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.10'
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.7.5'
+	compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.7.5'
 	compile 'mysql:mysql-connector-java:5.1.9'
 	compile 'javax.servlet:servlet-api:2.5'
 	testCompile 'junit:junit:4.11'
